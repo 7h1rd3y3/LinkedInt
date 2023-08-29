@@ -1,0 +1,68 @@
+{# templates/results.html #}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>LinkedInt_Results</title>
+    <style>
+        #employees {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        #employees td, #employees th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        #employees tr:nth-child(even){background-color: #f2f2f2;}
+        #employees tr:hover {background-color: #ddd;}
+        #employees th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #1F42B4;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <p id="logo">
+            <img src="data:image/png;base64,{{ logo_data }} width=500 height=200>
+        </p>
+        <p id="repoInfo">
+            LinkedInt Version 1.1 - Developed by Vincent Yiu (@vysecurity)<br/>
+            The tool is developed for testing and educational purposes only.<br/>
+            GitHub Sponsor Link (to support educational content):
+            <a href="https://github.com/sponsors/vysecurity">https://github.com/sponsors/vysecurity</a>
+        </p>
+        <p id="employeeTable">
+            <table id=\"employees\">
+                <tr>
+                    <th>Photo</th>
+                    <th>Name</th>
+                    <th>Possible Email:</th>
+                    <th>Job</th>
+                    <th>Location</th>
+                </tr>
+            {%- for row in results %}
+                <tr>
+                    <td>
+                        <a href=\"{{ row.data_slug }}\">
+                            <img src=\"data:{{ row.content_type }};base64,{{ row.encoded_picture }}\" width=200 height=200>
+                        </a>
+                    </td>
+                    <td>
+                        <a href=\"{{ row.data_slug }}\">{{ row.name }}</a>
+                    </td>
+                    <td>{{ row.email }}</td>
+                    <td>{{ row.data_occupation }}</td>
+                    <td>{{ row.data_location }}</td>
+                </tr>
+            {%- endfor %}
+            </table>
+        </p>
+    </center>
+</body>
+</html>

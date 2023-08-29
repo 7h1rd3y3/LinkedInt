@@ -323,7 +323,7 @@ def main(args):
     api_key = config.get("API_KEYS", "hunter")
     username = config.get("CREDS", "linkedin_username")
     password = config.get("CREDS", "linkedin_password")
-
+    search = args.keywords
     if use_company_filter := validate_bool("Filter by Company"):
         company_id = validate_int(
             "Specify a Company ID (Provide ID or leave blank to automate)"
